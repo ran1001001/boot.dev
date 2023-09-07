@@ -15,10 +15,9 @@ def filter_messages(messages):
             filtered_sentence.append(word)
         filtered_messages.append(" ".join(filtered_sentence))
         word_count.append(counter)
-        
+
     return filtered_messages, word_count
 
-# Don't edit below this line
 
 
 def main():

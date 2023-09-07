@@ -10,7 +10,6 @@ def calculate_damage(armor, weapon="fist"):
     return damage - armor
 
 
-# Don't touch below this line
 
 
 def test(armor, weapon):
