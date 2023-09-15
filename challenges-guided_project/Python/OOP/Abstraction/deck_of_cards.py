@@ -19,7 +19,22 @@ class DeckOfCards:
         "King",
     ]
 
-    # ?
+    def __init__(self):
+        self.__cards = []
+        self.create_deck()
+
+    def create_deck(self):
+        for suit in self.SUITS:
+            for rank in self.RANKS:
+                self.__cards.append((rank, suit))
+
+    def shuffle_deck(self):
+        random.shuffle(self.__cards)
+
+    def deal_card(self):
+        if len(self.__cards) == 0:
+            return None
+        return self.__cards.pop()
 
     def __str__(self):
         return f"The deck has {len(self.__cards)} cards"
@@ -43,6 +58,14 @@ def main():
     random.seed(1)
     deck = DeckOfCards()
     deck.shuffle_deck()
+    deck = test(deck)
+    deck = test(deck)
+    deck = test(deck)
+    deck = test(deck)
+    deck = test(deck)
+    deck = test(deck)
+    deck = test(deck)
+    deck = test(deck)
     deck = test(deck)
     deck = test(deck)
     deck = test(deck)
