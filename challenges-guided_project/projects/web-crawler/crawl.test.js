@@ -2,7 +2,7 @@ const { test, expect } = require('@jest/globals');
 const { normalizeURL, getURLsFromHTML } = require('./crawl.js');
 
 test('normalizing url protocol', () => {
-    expect(normalizeURL('https://example.com/path/to/file')).toBe('example.com/path/to/file')
+    expect(normalizeURL('https://example.com/')).toBe('example.com')
 });
 
 test('normalizing url port', () => {
@@ -20,6 +20,14 @@ test('normalizing url http', () => {
 test('handle absolute urls', () => {
     const baseURL = 'https://blog.boot.dev'
     const htmlBody = "<html><body><a href='https://blog.boot.dev'><span>Go to boot.dev blogs</span></a></body></html>"
+    const actual = getURLsFromHTML(htmlBody, baseURL)
+    const expected = [ 'https://blog.boot.dev' ]
+    expect(actual).toEqual(expected)
+});
+
+test('handle double forward slashes', () => {
+    const baseURL = 'https://blog.boot.dev'
+    const htmlBody = "<html><body><a href='//https://blog.boot.dev'><span>Go to boot.dev blogs</span></a></body></html>"
     const actual = getURLsFromHTML(htmlBody, baseURL)
     const expected = [ 'https://blog.boot.dev' ]
     expect(actual).toEqual(expected)
