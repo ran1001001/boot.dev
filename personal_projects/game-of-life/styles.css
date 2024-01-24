@@ -9,20 +9,21 @@ body {
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(10, 30px); /* Adjust the number of columns and size as needed */
+    grid-template-columns: repeat(12, 20px);
 }
 
 .cell {
-    width: 30px; /* Adjust the size of each cell */
-    height: 30px;
-    border: 1px solid #ccc;
+    width: 20px;
+    height: 20px;
+    border: 0.5px solid #ccc;
     cursor: pointer;
 }
 
 .cell.active {
-    background-color: #76f84e; /* Color for active cells */
+    background-color: #e01304;
+    border: 0.5px solid;
 }
 
 .cell:hover {
-    background-color: #e01304; /* Color on hover */
+    background-color: #ce3b30;
 }

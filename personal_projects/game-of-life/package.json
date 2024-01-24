@@ -4,6 +4,7 @@
   "description": "Conway's Game of Life w/ htmx :>",
   "main": "main.js",
   "scripts": {
+    "start": "node main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "ran1001001",
