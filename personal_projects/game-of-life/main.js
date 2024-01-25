@@ -1,10 +1,25 @@
 const divs = document.querySelectorAll('.cell')
+let isDrawing = false;
+
 divs.forEach(element => {
-    element.addEventListener("click", active);
+    element.addEventListener("mousedown", startDrawing);
+    element.addEventListener("mouseenter", draw);
+    element.addEventListener("mouseup", stopDrawing);
 });
 
-function active() {
-  this.classList.add("active")
+function startDrawing() {
+    isDrawing = true;
+    draw.call(this); // Draw the initial cell immediately, passing the current div/cell
+}
+
+function draw() {
+    if (isDrawing) {
+        this.classList.toggle("active");
+    }
+}
+
+function stopDrawing() {
+    isDrawing = false;
 }
 
 function evolveGrid(currentGrid) {
