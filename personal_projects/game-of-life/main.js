@@ -58,6 +58,7 @@ function evolveGrid(currentGrid) {
 }
 
 function play() {
+    console.log("play called")
     //initialize current grid's cells states
     const currentGrid = []
     for (let i = 0; i < divs.length; i++) {
@@ -82,5 +83,20 @@ function play() {
             div.classList.add("active")
         }
     }
-
 }
+//play/stop control on interval
+let playInterval;
+let clicked = false;
+const playButton = document.getElementById("play-button")
+const stopButton = document.getElementById("stop-button")
+playButton.addEventListener("click", () => {
+    if (!clicked) {
+        playInterval = setInterval(play, 100)
+        clicked = true
+    }
+    console.log(clicked)
+})
+stopButton.addEventListener("click", () => {
+    clicked = false
+    clearInterval(playInterval)
+})
