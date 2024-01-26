@@ -1,12 +1,3 @@
-const divs = document.querySelectorAll('.cell')
-let isDrawing = false;
-
-divs.forEach(element => {
-    element.addEventListener("mousedown", startDrawing);
-    element.addEventListener("mouseenter", draw);
-    element.addEventListener("mouseup", stopDrawing);
-});
-
 function startDrawing() {
     isDrawing = true;
     draw.call(this); // Draw the initial cell immediately, passing the current div/cell
@@ -23,8 +14,9 @@ function stopDrawing() {
 }
 
 function evolveGrid(currentGrid) {
-    const numRows = 12;
-    const numCols = 12;
+    // size fix later
+    const numRows = 24;
+    const numCols = 24;
 
     const nextGeneration = currentGrid.slice(); // Create a copy of the current grid
 
@@ -58,7 +50,6 @@ function evolveGrid(currentGrid) {
 }
 
 function play() {
-    console.log("play called")
     //initialize current grid's cells states
     const currentGrid = []
     for (let i = 0; i < divs.length; i++) {
@@ -84,19 +75,50 @@ function play() {
         }
     }
 }
+
+function createCells(size, container) {
+    const sizeGrid = size * size
+    for (let i = 0; i < sizeGrid; i++) {
+        const div = document.createElement('div')
+        div.classList.add('cell')
+        container.appendChild(div)
+    }
+    return document.querySelectorAll('.cell')
+}
+
+function setupCells(divs) {
+    divs.forEach(element => {
+        element.addEventListener("mousedown", startDrawing);
+        element.addEventListener("mouseenter", draw);
+        element.addEventListener("mouseup", stopDrawing);
+    });
+}
+
+//initialize divs
+let divs;
+
+//handle drawing on grid
+let isDrawing = false;
 //play/stop control on interval
 let playInterval;
 let clicked = false;
 const playButton = document.getElementById("play-button")
 const stopButton = document.getElementById("stop-button")
+const gridButton = document.getElementById("createGrid-button")
 playButton.addEventListener("click", () => {
     if (!clicked) {
         playInterval = setInterval(play, 100)
         clicked = true
     }
-    console.log(clicked)
 })
 stopButton.addEventListener("click", () => {
     clicked = false
     clearInterval(playInterval)
+})
+//Grid creation
+gridButton.addEventListener("click", () => {
+    const container = document.getElementById('grid-container')
+    divs = createCells(24, container)//customize size is 24
+    setupCells(divs)
+    container.style.gridTemplateColumns = 'repeat(24, 20px)'
 })

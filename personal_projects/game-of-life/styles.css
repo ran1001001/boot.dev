@@ -9,7 +9,7 @@ body {
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(12, 20px);
+    /* grid-template-columns: repeat(12, 20px); */
 }
 
 .cell {
