@@ -115,10 +115,3 @@ stopButton.addEventListener("click", () => {
     clicked = false
     clearInterval(playInterval)
 })
-//Grid creation
-gridButton.addEventListener("click", () => {
-    const container = document.getElementById('grid-container')
-    divs = createCells(24, container)//customize size is 24
-    setupCells(divs)
-    container.style.gridTemplateColumns = 'repeat(24, 20px)'
-})

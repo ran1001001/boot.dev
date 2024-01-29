@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Conway's Game of Life</title>
+</head>
+<body>
+</body>
+    <form id="parent-form">
+        <input type="submit" value="Create grid"
+            hx-post="/create"
+            hx-trigger="click"
+            hx-target="#parent-form"
+            hx-swap="outerHTML"
+        >
+        <input id="size" type="range" name="size" min="3" max="30"
+            oninput="this.nextElementSibling.value = this.value"
+        >
+        <output for="size"></output>
+    </form>
+    <script src="htmx.min.js"></script>
+</html>
