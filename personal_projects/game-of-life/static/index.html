@@ -9,16 +9,21 @@
 <body>
 </body>
     <form id="parent-form">
-        <input type="submit" value="Create grid"
-            hx-post="/create"
-            hx-trigger="click"
-            hx-target="#parent-form"
-            hx-swap="outerHTML"
-        >
+        <label for="size">Set grid size: </label>
         <input id="size" type="range" name="size" min="3" max="30"
             oninput="this.nextElementSibling.value = this.value"
         >
         <output for="size"></output>
+        <br>
+        <br>
+        <div>
+            <input type="submit" value="Create grid"
+            hx-post="/create"
+            hx-trigger="click"
+            hx-target="#parent-form"
+            hx-swap="outerHTML"
+            >
+        </div>
     </form>
     <script src="htmx.min.js"></script>
 </html>

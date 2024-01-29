@@ -13,21 +13,23 @@ app.get('/', async (req, res) => {
 app.post('/create', async (req, res) => {
     const size = req.body.size
     const html = `
-    <div id="main-container">
+    <h1 id="size-result">${size} x ${size}</h1>
+    <h2 id="grid-state">Game Not Playing</h2>
+    <div class="controls-container">
+        <button onclick="location.href='/'">Go back</button>
+    </div>
+    <div style="margin: 60px 0px 25px 0px" class="controls-container">
         <button id="play-button">play</button>
         <button id="stop-button">stop</button>
+    </div>
+    <div id="main-container">
         <div class="grid-container" id="grid-container"></div>
     </div>
-    <script src="main.js">
-        const container = document.getElementById('grid-container')
-        divs = createCells(${size}, container)//customize size
-        setupCells(divs)
-        container.style.gridTemplateColumns = 'repeat(${size}, 20px)'
-    </script>`
+    <script src="main.js" type="text/javascript"></script>`
     res.send(html)
 })
 
 app.listen(3000, () => {
-    console.log("we're cooking...")
+    console.log("we're playing...")
     console.log("Go to: http://localhost:3000")
 })

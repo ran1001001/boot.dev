@@ -13,10 +13,9 @@ function stopDrawing() {
     isDrawing = false;
 }
 
-function evolveGrid(currentGrid) {
-    // size fix later
-    const numRows = 24;
-    const numCols = 24;
+function evolveGrid(gridSize, currentGrid) {
+    const numRows = gridSize;
+    const numCols = gridSize;
 
     const nextGeneration = currentGrid.slice(); // Create a copy of the current grid
 
@@ -49,7 +48,7 @@ function evolveGrid(currentGrid) {
     return nextGeneration;
 }
 
-function play() {
+function play(gridSize) {
     //initialize current grid's cells states
     const currentGrid = []
     for (let i = 0; i < divs.length; i++) {
@@ -62,7 +61,7 @@ function play() {
     }
 
     //apply game logic for next generation
-    const nextGrid = evolveGrid(currentGrid)
+    const nextGrid = evolveGrid(gridSize, currentGrid)
 
     //render next generation's grid state
     for (let i = 0; i < divs.length; i++) {
@@ -96,22 +95,35 @@ function setupCells(divs) {
 
 //initialize divs
 let divs;
-
+//get size from div #size-result
+let sizeResult = document.getElementById('size-result')
+let size = +sizeResult.innerText.slice(0, 2)
 //handle drawing on grid
 let isDrawing = false;
-//play/stop control on interval
+//play/stop control on interval and toggle "running" state
 let playInterval;
 let clicked = false;
+const gridState = document.getElementById("grid-state")
 const playButton = document.getElementById("play-button")
 const stopButton = document.getElementById("stop-button")
-const gridButton = document.getElementById("createGrid-button")
 playButton.addEventListener("click", () => {
     if (!clicked) {
-        playInterval = setInterval(play, 100)
+        playInterval = setInterval(function() {play(size)}, 130)
         clicked = true
+        gridState.innerText = "Game Playing..."
     }
 })
 stopButton.addEventListener("click", () => {
     clicked = false
     clearInterval(playInterval)
+    gridState.innerText = "Game Not Playing"
 })
+
+//create and setup cells
+const container = document.getElementById('grid-container')
+//create cells as divs
+divs = createCells(size, container)
+//add event listeners for each divs to draw on grid
+setupCells(divs)
+//style the grid
+container.style.gridTemplateColumns = `repeat(${size}, 20px)`

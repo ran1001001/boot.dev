@@ -7,14 +7,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
     margin: 0;
     background-color: #f0f0f0;
 }
 
 .grid-container {
     display: grid;
-    /* grid-template-columns: repeat(12, 20px); */
 }
 
 .cell {
@@ -32,4 +30,19 @@ body {
 
 .cell:hover {
     background-color: #ce3b30;
+}
+
+#size-result, #grid-state {
+   text-align: center;
+}
+
+.controls-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#parent-form {
+   text-align: center;
+   margin-top: 100px;
 }
